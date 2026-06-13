@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#e85d3f">
+  <meta name="description" content="根据当季食材推荐菜品的手机点菜小程序">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  <title>好时味 · 时令点菜</title>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="hero">
+      <div class="topbar">
+        <div>
+          <p class="eyebrow">今日时令菜单</p>
+          <h1>好时味</h1>
+        </div>
+        <button class="table-pill" id="tableButton" aria-label="选择桌号">堂食 · 08桌</button>
+      </div>
+      <div class="season-card">
+        <div class="season-icon" id="seasonIcon">🌿</div>
+        <div>
+          <p class="season-kicker" id="dateText"></p>
+          <h2 id="seasonTitle"></h2>
+          <p id="seasonDescription"></p>
+        </div>
+      </div>
+      <div class="search-wrap">
+        <span>⌕</span>
+        <input id="searchInput" type="search" placeholder="搜索菜名或食材" autocomplete="off">
+      </div>
+    </header>
+
+    <main>
+      <section class="recommendation">
+        <div class="section-heading">
+          <div>
+            <span class="tiny-label">CHEF'S PICK</span>
+            <h2>本季推荐</h2>
+          </div>
+          <span class="fresh-badge">时令鲜味</span>
+        </div>
+        <div class="featured-scroll" id="featuredList"></div>
+      </section>
+
+      <nav class="category-tabs" id="categoryTabs" aria-label="菜品分类"></nav>
+
+      <section class="menu-section">
+        <div class="section-heading compact">
+          <div>
+            <span class="tiny-label">TODAY'S MENU</span>
+            <h2 id="menuTitle">全部菜品</h2>
+          </div>
+          <span class="dish-count" id="dishCount"></span>
+        </div>
+        <div class="dish-list" id="dishList"></div>
+        <div class="empty-state hidden" id="emptyState">
+          <div>🍽️</div>
+          <h3>没有找到这道菜</h3>
+          <p>换个关键词试试吧</p>
+        </div>
+      </section>
+    </main>
+
+    <div class="cart-bar hidden" id="cartBar">
+      <button class="cart-summary" id="cartButton">
+        <span class="cart-icon">🛍️<b id="cartCount">0</b></span>
+        <span><strong id="cartTotal">¥0</strong><small>已选菜品</small></span>
+      </button>
+      <button class="checkout-button" id="checkoutButton">去下单</button>
+    </div>
+  </div>
+
+  <div class="modal-backdrop hidden" id="cartModal">
+    <section class="cart-sheet" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <div class="sheet-handle"></div>
+      <div class="sheet-heading">
+        <h2 id="cartTitle">已选菜品</h2>
+        <button id="closeCart" aria-label="关闭">×</button>
+      </div>
+      <div id="cartItems"></div>
+      <div class="sheet-total"><span>合计</span><strong id="sheetTotal">¥0</strong></div>
+      <button class="confirm-button" id="confirmOrder">确认下单</button>
+    </section>
+  </div>
+
+  <div class="toast hidden" id="toast">下单成功，后厨正在准备</div>
+  <script src="app.js"></script>
+</body>
+</html>

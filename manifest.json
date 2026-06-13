@@ -1,0 +1,9 @@
+{
+  "name": "好时味 · 时令点菜",
+  "short_name": "好时味",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#fffdf9",
+  "theme_color": "#e85d3f",
+  "description": "根据当季食材自动推荐菜品的手机点菜小程序"
+}

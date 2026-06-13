@@ -1,9 +1,9 @@
 {
-  "name": "好时味 · 时令点菜",
-  "short_name": "好时味",
+  "name": "武汉寻味 · 菜品门店比价",
+  "short_name": "武汉寻味",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#fffdf9",
   "theme_color": "#e85d3f",
-  "description": "根据当季食材自动推荐菜品的手机点菜小程序"
+  "description": "武汉真实菜品、门店与参考价格对比"
 }

@@ -1,4 +1,4 @@
-const CACHE = "seasonal-order-v2";
+const CACHE = "seasonal-order-v3";
 const ASSETS = ["./", "index.html", "styles.css", "app.js", "manifest.json", "assets/noodles.jpg", "assets/dumplings.jpg", "assets/soup.jpg", "assets/crayfish.jpg", "assets/chinese.jpg", "assets/fried.jpg", "assets/pizza.jpg", "assets/burger.jpg", "assets/sushi.jpg", "assets/steak.jpg"];
 
 self.addEventListener("install", event => {

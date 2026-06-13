@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#e85d3f">
   <meta name="description" content="武汉真实菜品、门店与参考价格对比">
   <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="styles.css?v=3">
   <title>武汉寻味 · 菜品门店比价</title>
 </head>
 <body>
@@ -30,10 +30,28 @@
       <div class="search-wrap">
         <span>⌕</span>
         <input id="searchInput" type="search" placeholder="搜索菜名或食材" autocomplete="off">
+        <button id="locateButton" class="locate-button" aria-label="获取当前位置">定位</button>
       </div>
     </header>
 
     <main>
+      <section class="live-search hidden" id="liveSearch">
+        <div class="section-heading compact">
+          <div>
+            <span class="tiny-label">LIVE NEARBY SEARCH</span>
+            <h2>附近实时搜索</h2>
+          </div>
+          <span class="dish-count" id="locationStatus">武汉市</span>
+        </div>
+        <p id="liveSearchText"></p>
+        <div class="search-platforms">
+          <a id="amapSearch" target="_blank" rel="noopener">高德查附近</a>
+          <a id="baiduSearch" target="_blank" rel="noopener">百度地图查附近</a>
+          <a id="meituanSearch" target="_blank" rel="noopener">美团查价格</a>
+        </div>
+        <p class="live-note">地图结果与营业状态实时更新；菜单价格请以门店或外卖平台显示为准。</p>
+      </section>
+
       <section class="recommendation">
         <div class="section-heading">
           <div>
@@ -81,6 +99,6 @@
   </div>
 
   <div class="toast hidden" id="toast">价格仅供参考，请以门店当日菜单为准</div>
-  <script src="app.js?v=2"></script>
+  <script src="app.js?v=3"></script>
 </body>
 </html>

@@ -80,8 +80,14 @@ h1 { margin: 0; font-family: Georgia, "Songti SC", serif; font-size: 29px; lette
 }
 .search-wrap span { font-size: 25px; line-height: 16px; transform: rotate(-20deg); color: var(--muted); }
 .search-wrap input { width: 100%; border: 0; outline: 0; background: transparent; }
+.locate-button { flex: none; border: 0; border-radius: 9px; padding: 6px 8px; color: #fff; background: var(--accent); font-size: 10px; }
 main { padding: 24px 0; }
-.recommendation, .menu-section { padding: 0 18px; }
+.recommendation, .menu-section, .live-search { padding: 0 18px; }
+.live-search { margin-bottom: 22px; }
+.live-search > p { margin: 7px 0 10px; color: var(--muted); font-size: 11px; line-height: 1.6; }
+.search-platforms { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
+.search-platforms a { padding: 10px 5px; border: 1px solid var(--line); border-radius: 11px; color: var(--accent-dark); background: #fff; font-size: 10px; font-weight: 700; text-align: center; text-decoration: none; }
+.live-search .live-note { margin-bottom: 0; padding: 8px 10px; border-radius: 10px; color: #8a6231; background: #fff5de; font-size: 9px; }
 .section-heading { margin-bottom: 14px; }
 .section-heading h2 { margin: 2px 0 0; font-family: Georgia, "Songti SC", serif; font-size: 22px; }
 .tiny-label { color: var(--accent); font-size: 9px; font-weight: 800; letter-spacing: 1.8px; }

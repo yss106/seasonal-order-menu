@@ -91,6 +91,7 @@ const season = seasonData[seasonKey];
 const categories = ["全部", ...new Set(dishes.map(d => d.category))];
 let activeCategory = "全部";
 let query = "";
+let userLocation = null;
 const $ = s => document.querySelector(s);
 const money = n => `¥${n}`;
 const minPrice = d => Math.min(...d.stores.map(s => s[2]));
@@ -143,6 +144,38 @@ function renderMenu() {
   $("#emptyState").classList.toggle("hidden", visible.length > 0);
 }
 
+function updateLiveSearch() {
+  const panel = $("#liveSearch");
+  panel.classList.toggle("hidden", !query);
+  if (!query) return;
+  const encoded = encodeURIComponent(query);
+  const locationLabel = userLocation ? "已使用当前位置" : "武汉市范围";
+  $("#locationStatus").textContent = locationLabel;
+  $("#liveSearchText").textContent = `正在查找“${query}”附近门店。站内已收录的结果会显示在下方，也可打开地图或美团查看实时营业状态。`;
+  const center = userLocation ? `&center=${userLocation.lng},${userLocation.lat}` : "";
+  $("#amapSearch").href = `https://uri.amap.com/search?keyword=${encoded}&city=武汉${center}&view=map&src=wuhan-food-guide`;
+  $("#baiduSearch").href = `https://map.baidu.com/search/${encoded}/@12737286,3558573,12z`;
+  $("#meituanSearch").href = `https://www.meituan.com/s/武汉-${encoded}/`;
+}
+
+function requestLocation() {
+  if (!navigator.geolocation) {
+    $("#locationStatus").textContent = "浏览器不支持定位";
+    return;
+  }
+  $("#locationStatus").textContent = "正在定位…";
+  navigator.geolocation.getCurrentPosition(position => {
+    userLocation = { lat: position.coords.latitude, lng: position.coords.longitude };
+    $("#locateButton").textContent = "已定位";
+    updateLiveSearch();
+  }, () => {
+    $("#locationStatus").textContent = "定位未授权";
+    $("#toast").textContent = "请在 Safari 网站设置中允许位置权限";
+    $("#toast").classList.remove("hidden");
+    setTimeout(() => $("#toast").classList.add("hidden"), 2800);
+  }, { enableHighAccuracy: true, timeout: 10000, maximumAge: 300000 });
+}
+
 function openDetail(id) {
   const d = dishes.find(item => item.id === id);
   const lowest = minPrice(d);
@@ -169,7 +202,12 @@ document.addEventListener("click", event => {
     renderCategories(); renderMenu();
   }
 });
-$("#searchInput").addEventListener("input", e => { query = e.target.value.trim().toLowerCase(); renderMenu(); });
+$("#searchInput").addEventListener("input", e => {
+  query = e.target.value.trim().toLowerCase();
+  renderMenu();
+  updateLiveSearch();
+});
+$("#locateButton").addEventListener("click", requestLocation);
 $("#closeDetail").addEventListener("click", () => $("#detailModal").classList.add("hidden"));
 $("#detailModal").addEventListener("click", e => { if (e.target.id === "detailModal") $("#detailModal").classList.add("hidden"); });
 $("#tableButton").addEventListener("click", () => {
